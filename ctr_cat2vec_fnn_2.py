@@ -18,7 +18,8 @@ opts.total_training_sample = 127127
 # 1458 2261 2997 3386 3476 2259 2821 3358 3427 all
 BASE_PATH = './data/make-ipinyou-data/all/'
 opts.field_indices_path = BASE_PATH + 'field_indices.txt'
-opts.train_path = BASE_PATH + 'train.yzx.10.txt'
+#opts.train_path = BASE_PATH + 'train.yzx.10.txt'
+opts.train_path = BASE_PATH + 'train.yzx.txt'
 opts.test_path = BASE_PATH + 'test.yzx.txt'
 opts.featindex = BASE_PATH + 'featindex.txt'
 opts.test_num = 0
@@ -28,7 +29,8 @@ opts.model_name = 'ipinyou_distcrimination_concat'
 opts.gate_type = 'sum' # sum, mul
 opts.activation_type = 'tanh' # sigmoid, tanh, relu, linear etc.
 opts.dropout = 0.05
-opts.batch_size = 64
+#opts.batch_size = 64
+opts.batch_size = 512
 opts.embedding_size = 16
 opts.interaction_times = 1
 opts.epochs_to_train = 5
@@ -90,7 +92,7 @@ for i in range(opts.epochs_to_train):
     print("Current Global Epoch: ", opts.current_epoch)
     training_batch_generator = ctr_batch_generator(opts)
     history = model.fit_generator(training_batch_generator, opts.total_training_sample, 1)
-    if i % 1 == 0:
+    if i % 5 == 0:
         model.save('model_'+opts.model_name+'_' + str(opts.current_epoch) + '.h5')
         eval_auc(model, opts, target=target, get_prob=get_prob)
     opts.current_epoch += 1

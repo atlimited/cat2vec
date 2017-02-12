@@ -17,7 +17,8 @@ opts.total_training_sample = 127127
 # 1458 2261 2997 3386 3476 2259 2821 3358 3427 all
 BASE_PATH = './data/make-ipinyou-data/all/'
 opts.field_indices_path = BASE_PATH + 'field_indices.txt'
-opts.train_path = BASE_PATH + 'train.yzx.10.txt'
+#opts.train_path = BASE_PATH + 'train.yzx.10.txt'
+opts.train_path = BASE_PATH + 'train.yzx.txt'
 opts.test_path = BASE_PATH + 'test.yzx.txt'
 opts.featindex = BASE_PATH + 'featindex.txt'
 opts.model_name = 'ipinyou_discriniantion_concat_sum_l2_1'

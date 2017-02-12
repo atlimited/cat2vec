@@ -19,7 +19,8 @@ opts.total_training_sample = 127127
 # 1458 2261 2997 3386 3476 2259 2821 3358 3427 all
 BASE_PATH = './data/make-ipinyou-data/all/'
 opts.field_indices_path = BASE_PATH + 'field_indices.txt'
-opts.train_path = BASE_PATH + 'train.yzx.10.txt'
+opts.train_path = BASE_PATH + 'train.yzx.txt'
+#opts.train_path = BASE_PATH + 'train.yzx.10.txt'
 opts.test_path = BASE_PATH + 'test.yzx.txt'
 opts.featindex = BASE_PATH + 'featindex.txt'
 opts.model_name = 'ipinyou_lr'
@@ -27,6 +28,7 @@ opts.model_name = 'ipinyou_lr'
 ### Paramerters for tuning
 opts.batch_size = 512
 opts.dropout = 0.2
+opts.epochs_to_train = 5
 
 
 
@@ -58,7 +60,7 @@ for i in range(opts.epochs_to_train):
     print("Current Global Epoch: ", opts.current_epoch)
     training_batch_generator = ctr_batch_generator(opts)
     history = model.fit_generator(training_batch_generator, opts.total_training_sample, 1)
-    if i % 1 == 0:
+    if i % 10 == 0:
         model.save('model_'+opts.model_name+'_' + str(opts.current_epoch) + '.h5')
         eval_auc(model, opts)
     opts.current_epoch += 1
